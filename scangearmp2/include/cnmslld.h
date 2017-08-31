@@ -137,5 +137,3 @@ int canon_get_adf_status( void );
 }
 #endif
 #endif
-
-
