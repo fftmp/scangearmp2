@@ -5,7 +5,6 @@
 #include <string.h>
 #include <sys/types.h>
 #include "errors.h"
-#include "errordlg.h"
 #include "cnmstype.h"
 #include "cnmsfunc.h"
 #include "support.h"

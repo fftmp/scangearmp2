@@ -11,6 +11,7 @@
 #include <jpeglib.h>
 #include <setjmp.h>
 #include <unistd.h>
+#include "error_quit.h"
 
 #ifdef __GNUC__
 # define UNUSED(v) (void) v
@@ -844,7 +845,7 @@ SCAN_START:
 		if ( param.ScanMethod != CIJSC_SCANMODE_PLATEN &&  status == CMT_STATUS_NO_DOCS ) {
 			/* no paper */
 			if( handled->sgmp.scanning_page == 1 ) {
-				CIJSC_UI_error_show( &(handled->sgmp) );
+				handled->sgmp.last_error_quit = get_last_error_quit();
 				if(handled->sgmp.last_error_quit == CIJSC_VALUE_OK){
 					goto SCAN_START;
 				}

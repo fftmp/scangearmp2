@@ -23,16 +23,13 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_ERRORDLG_H_
-#define	_ERRORDLG_H_
+#ifndef	_ERROR_QUIT_H_
+#define	_ERROR_QUIT_H_
+
+int get_last_error_quit();
 
 
-#include "support.h"
-
-int CIJSC_UI_error_show( SGMP_Data_Lite *data );
-
-
-#endif	/* _ERRORDLG_H_ */
+#endif	/* _ERROR_QUIT_H_ */
 
 
 

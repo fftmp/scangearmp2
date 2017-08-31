@@ -23,23 +23,21 @@
  *    If you do not wish that, delete this exception.
 */
 
-#include <gtk/gtk.h>
-
 #include "support.h"
-#include "callbacks.h"
 #include "cnmsstrings.h"
 #include "errors.h"
 
-#include "errordlg.h"
+#include "error_quit.h"
 
-int CIJSC_UI_error_show( SGMP_Data *data, GtkWidget *parent )
+
+int get_last_error_quit()
 {
 	int		index_id, index_mes;
 	int		ret = -1;
 	int		errorCode = 0;
-	
+
 	DBGMSG("->\n");
-	
+
 	if ( lastIOErrCode ) {
 		errorCode = -lastIOErrCode;
 		if( errorCode != ERR_CODE_ENOSPC ) {
@@ -53,18 +51,12 @@ int CIJSC_UI_error_show( SGMP_Data *data, GtkWidget *parent )
 		errorCode = lastBackendErrCode;
 	}
 	DBGMSG("errorCode = %d\n", errorCode );
-	data->last_error_quit = CIJSC_ERROR_DLG_QUIT_FALSE;
-	
+	ret = CIJSC_ERROR_DLG_QUIT_FALSE;
+
 	/* error occurred. */
 	if ( errorCode ) {
-		if ( parent ) {
-			if( GTK_WIDGET_VISIBLE( parent ) ) {
-				gtk_widget_set_sensitive( parent, FALSE );
-			}
-		}
-		
-		/* get error id. */
-		for( index_id = 0; index_id < sizeof( error_index_table ) / sizeof( CIJSC_ERROR_INDEX_TABLE ) ; index_id++ ) {
+	/* get error id. */
+		for( index_id = 0; (unsigned long)index_id < sizeof( error_index_table ) / sizeof( CIJSC_ERROR_INDEX_TABLE ) ; index_id++ ) {
 			if ( error_index_table[index_id].code == errorCode ) {
 				break;
 			}
@@ -83,41 +75,12 @@ int CIJSC_UI_error_show( SGMP_Data *data, GtkWidget *parent )
 		if ( error_msg_table[index_mes].id < 0 ) {
 			goto _EXIT;
 		}
-		gtk_label_set_label( GTK_LABEL ( data->label_error_msg ), gettext( error_msg_table[index_mes].msg ) );
-		switch ( error_msg_table[index_mes].type ){
-			case CIJSC_ERROR_DLG_TYPE_OK :
-				gtk_widget_hide( data->button_error_cancel );
-				gtk_widget_show( data->button_error_ok );
-				gtk_widget_grab_focus( data->button_error_ok );
-				break;
-			case CIJSC_ERROR_DLG_TYPE_OK_CANCEL :
-				gtk_widget_show( data->button_error_cancel );
-				gtk_widget_show( data->button_error_ok );
-				if( error_msg_table[index_mes].id == CIJSC_ERROR_SAVE_OVERWRITE ) {
-					gtk_widget_grab_focus( data->button_error_cancel );
-				}
-				else {
-					gtk_widget_grab_focus( data->button_error_ok );
-				}
-				break;
-			default:
-				break;
-		}
+
 		ret = error_msg_table[index_mes].quit;
-		data->last_error_quit = ret;
-		gtk_widget_show( data->dialog_error );
-		gtk_main();
+
 	}
 _EXIT:
-	if ( errorCode ) {
-		if ( parent ) {
-			if( GTK_WIDGET_VISIBLE( parent ) ) {
-				gtk_widget_set_sensitive( parent, TRUE );
-			}
-		}
-	}
-	/* clear lastBackendErrCode */
 	lastBackendErrCode = 0;
-	
+
 	return ret;
 }
