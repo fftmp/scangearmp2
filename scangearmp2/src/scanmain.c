@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_SCANMAIN_C_
-#define	_SCANMAIN_C_
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -685,10 +682,3 @@ void CIJSC_UI_notify_hide( SGMP_Data *data )
 	
 	gtk_main_quit();	/* exit loop : CIJSC_Scan_And_Save() */
 }
-
-
-#endif	/* _SCANMAIN_C_ */
-
-
-
-

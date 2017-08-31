@@ -23,8 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_FILE_CONTROL_C_
-#define	_FILE_CONTROL_C_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -370,6 +368,3 @@ EXIT_ERR:
 	FileControlSeekFile( fd, lastOffset, FILECONTROL_SEEK_FROM_TOP );
 	goto	EXIT;
 }
-
-
-#endif	/* _FILE_CONTROL_C_ */

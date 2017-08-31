@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef _CANON_MFP_TOOLS_C_
-#define _CANON_MFP_TOOLS_C_
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1404,6 +1401,3 @@ CMT_Status cmt_network2_read( HCNNET3 handle, unsigned char *buffer, unsigned lo
 	
 	return CMT_STATUS_GOOD;
 }
-
-
-#endif	/* _CANON_MFP_TOOLS_C_ */

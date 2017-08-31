@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_MAINUI_C_
-#define	_MAINUI_C_
-
 #include <stdlib.h>
 #include <string.h>
 
@@ -333,10 +330,3 @@ void CIJSC_UI_main_button_scan_clicked( SGMP_Data *data, int format )
 	/* set scan parameters, start scan and save scanned data. */
 	ui_main_button_scan_main( data );
 }
-
-
-#endif	/* _MAINUI_C_ */
-
-
-
-

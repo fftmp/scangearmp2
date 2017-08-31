@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_PROGRESSBAR_C_
-#define	_PROGRESSBAR_C_
-
 #include <gtk/gtk.h>
 
 #include "support.h"
@@ -213,6 +210,3 @@ void CIJSC_UI_progress_update_label( SGMP_Data *data )
 		gtk_main_iteration();
 	}
 }
-
-#endif	/* _PROGRESSBAR_C_ */
-

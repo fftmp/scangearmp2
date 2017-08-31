@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_SELECTDEVICE_C_
-#define	_SELECTDEVICE_C_
-
 #include <gtk/gtk.h>
 #include <stdio.h>
 
@@ -185,11 +182,3 @@ int CIJSC_UI_select_update_list( SGMP_Data	*data )
 	
 	return CMT_STATUS_GOOD;
 }
-
-
-
-#endif	/* _SELECTDEVICE_C_ */
-
-
-
-

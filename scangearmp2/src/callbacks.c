@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_CALLBACKS_C_
-#define	_CALLBACKS_C_
-
 #include <gtk/gtk.h>
 
 #include "support.h"
@@ -336,9 +333,3 @@ on_button_error_cancel_clicked(	GtkWidget	*widget,
 	data->dialog_error_value = CIJSC_VALUE_CANCEL;
 	gtk_main_quit();/* go next */
 }
-
-#endif	/* _CALLBACKS_C_ */
-
-
-
-

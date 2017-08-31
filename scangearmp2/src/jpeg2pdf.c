@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef _JPEG2PDF_C_
-#define _JPEG2PDF_C_
-
 #include <stdio.h>
 #include <time.h>
 
@@ -732,5 +729,3 @@ EXIT:
 	}
 	return ret;
 }
-
-#endif /* _JPEG2PDF_C_ */

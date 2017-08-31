@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_KEEP_SETTING_C_
-#define	_KEEP_SETTING_C_
-
 #include <stdio.h>
 #include <limits.h>
 
@@ -267,6 +264,3 @@ EXIT:
 	return;
 }
 #endif
-
-#endif	/* _KEEP_SETTING_C_ */
-

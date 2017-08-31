@@ -23,10 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef _CANON_MFP_IO_C_
-#define _CANON_MFP_IO_C_
-
-
 #include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
@@ -889,5 +885,3 @@ void CIJSC_cancel( void )
 	/* for next CIJSC_start */
 	s->CIJSC_start_status = CMT_STATUS_NO_DOCS;
 }
-
-#endif	/* _CANON_MFP_IO_C_ */

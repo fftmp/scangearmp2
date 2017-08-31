@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_CNMSFUNC_C_
-#define	_CNMSFUNC_C_
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -364,6 +361,3 @@ CNMSInt32 CnmsDisposeQueue( LPCNMS_ROOT root, CNMSInt32 type )
 EXIT:
 	return ret;
 }
-
-
-#endif	/* _CNMSFUNC_C_ */

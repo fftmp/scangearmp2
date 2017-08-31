@@ -23,9 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#ifndef	_ERRORDLG_C_
-#define	_ERRORDLG_C_
-
 #include <gtk/gtk.h>
 
 #include "support.h"
@@ -215,7 +212,3 @@ _EXIT:
 	
 	return ret;
 }
-
-
-#endif	/* _ERRORDLG_C_ */
-
