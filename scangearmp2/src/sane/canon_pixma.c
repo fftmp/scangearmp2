@@ -4,8 +4,8 @@
 
 #define _GNU_SOURCE
 #include "canon_pixma.h"
-#include "sane.h"
-#include "saneopts.h"
+#include <sane/sane.h>
+#include <sane/saneopts.h>
 #include "sanei.h"
 #include "sanei_backend.h"
 #include <jpeglib.h>

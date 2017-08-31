@@ -86,7 +86,7 @@
 #ifndef sanei_h
 #define sanei_h
 
-#include "sane.h"
+#include <sane/sane.h>
 
 /** @name Public macros and functions
  * @{
