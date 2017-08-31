@@ -26,10 +26,6 @@
 #ifndef	_ERRORDLG_C_
 #define	_ERRORDLG_C_
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 
 #include "support.h"

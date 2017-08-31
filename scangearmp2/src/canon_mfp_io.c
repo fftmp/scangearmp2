@@ -26,10 +26,6 @@
 #ifndef _CANON_MFP_IO_C_
 #define _CANON_MFP_IO_C_
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 
 #include <stdio.h>
 #include <limits.h>

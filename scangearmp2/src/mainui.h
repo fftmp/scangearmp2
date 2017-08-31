@@ -26,10 +26,6 @@
 #ifndef	_MAINUI_H_
 #define	_MAINUI_H_
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 
 #include "support.h"

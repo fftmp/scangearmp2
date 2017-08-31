@@ -26,10 +26,6 @@
 #ifndef	_FILE_CONTROL_C_
 #define	_FILE_CONTROL_C_
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

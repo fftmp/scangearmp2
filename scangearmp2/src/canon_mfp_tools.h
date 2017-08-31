@@ -27,10 +27,6 @@
 #ifndef _canon_mfp_tools_h_
 #define _canon_mfp_tools_h_
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #include <inttypes.h>
 
 #include "libcnnet.h"

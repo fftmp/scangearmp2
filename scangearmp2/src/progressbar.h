@@ -26,10 +26,6 @@
 #ifndef	_PROGRESSBAR_H_
 #define	_PROGRESSBAR_H_
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 
 #include "support.h"

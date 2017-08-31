@@ -26,10 +26,6 @@
 #ifndef	_SELECTDEVICE_C_
 #define	_SELECTDEVICE_C_
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #include <gtk/gtk.h>
 #include <stdio.h>
 
