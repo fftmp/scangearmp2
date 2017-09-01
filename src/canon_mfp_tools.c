@@ -29,6 +29,7 @@
 #include <ctype.h>
 #include <libusb.h>
 #include <pthread.h>
+#include <unistd.h>
 
 #include "support.h"
 #include "errors.h"
