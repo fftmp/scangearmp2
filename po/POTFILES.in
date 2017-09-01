@@ -1,4 +1,4 @@
 # List of source files containing translatable strings.
 
 src/cnmsstrings.h
-scangearmp2.glade.h
+usr/share/scangearmp2/scangearmp2.glade

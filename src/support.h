@@ -28,10 +28,6 @@
 
 #include <limits.h>
 
-/*
-#define	_SGMP_DEBUG
-#define	_SGMP_DEBUG_VERBOSE_
-*/
 
 /*
 	Debug message macros.
