@@ -618,7 +618,7 @@ CMT_Status CIJSC_open2(
 	CANON_Scanner *s = &canon_device;
 
 	if ( opened_handle ) {
-		DBGMSG("ERROR : Another CANON MFP Deviece has opened already.\n");
+		DBGMSG("ERROR : Another CANON MFP Device has opened already.\n");
 		return (CMT_STATUS_INVAL);
 	}
 

@@ -1386,7 +1386,7 @@ CMT_Status cmt_network2_read( HCNNET3 handle, unsigned char *buffer, unsigned lo
 		status = CNNET3_Read( handle, tmp_buffer, &tmp_read_bytes, &needContinue );
 		
 #ifdef _SGMP_DEBUG_VERBOSE_
-		DBGMSG( " CNNET3_Read (recieve:%d) needContinue = %d\n", tmp_read_bytes, needContinue );
+		DBGMSG( " CNNET3_Read (receive:%d) needContinue = %d\n", tmp_read_bytes, needContinue );
 #endif
 		
 		if ( status != CNNET3_ERR_SUCCESS ) { /* error happend. */
