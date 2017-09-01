@@ -86,16 +86,6 @@ static void ui_dialog_save_gtk_main_iteration(void)
 	}
 }
 
-static void wait_msec(long msec)
-{
-	struct	timespec mytime;
-	CnmsSetMem( (CNMSLPSTR)&mytime, 0, sizeof(mytime) );
-	mytime.tv_sec   = 0;
-	mytime.tv_nsec  = 1000000*msec;	/* nsec = 1/1000000 msec */
-	
-	nanosleep( &mytime, NULL );
-}
-
 static gboolean ui_dialog_notify_hide( gpointer gdata )
 {
 	SGMP_Data	*data = (SGMP_Data *)gdata;
@@ -157,7 +147,7 @@ static int ui_dialog_save_check_status( SGMP_Data *data )
 {
 	int		ret = CIJSC_SCANMAIN_ERROR;
 	
-	switch( FileControlGetStatus( data->file_path, PATH_MAX ) ){
+	switch( FileControlGetStatus( data->file_path) ){
 		case	FILECONTROL_STATUS_NOT_EXIST:		/* No Error Save */
 			ret = CIJSC_SCANMAIN_GO_NEXT;
 			break;
@@ -226,7 +216,7 @@ EXIT:
 	return ret;
 }
 
-static void ui_dialog_save_scan_dispose_file( SGMP_Data *data, LPCNMS_NODE *pnode )
+static void ui_dialog_save_scan_dispose_file(LPCNMS_NODE *pnode )
 {
 
 	if( pnode == CNMSNULL ) {
@@ -287,14 +277,11 @@ static void ui_dialog_save_scan_dispose_file_list( SGMP_Data *data, LPCNMS_ROOT 
 static int ui_dialog_save_scan_start( SGMP_Data *data, LPCNMS_ROOT root )
 {
 	CANON_ScanParam		param;
-	CANON_SCANDATA		scandata;
 	int					i;
-	int					ret = -1;
 	int					status;
 	char				*buf = NULL;
 	int					errCode;
 	int					readBytes = 0;
-	int					result = CIJSC_SCANMAIN_SCAN_FINISHED;
 	int					pc_canceled = 0, updated_label = 0;
 	int					progress_id;
 	LPCNMS_NODE			node = CNMSNULL;
@@ -361,12 +348,12 @@ SCAN_START:
 						/* scan canceled. */
 						pc_canceled = 1;
 						/* delete disused file. */
-						ui_dialog_save_scan_dispose_file( data, &node );
+						ui_dialog_save_scan_dispose_file(&node );
 						goto FINISHED_WITH_NO_DOCS;
 					}
 				}else {
 					/* delete disused file. */
-					ui_dialog_save_scan_dispose_file( data, &node );
+					ui_dialog_save_scan_dispose_file(&node );
 					goto FINISHED_WITH_NO_DOCS;		/* scan finished. */
 				}
 			}
@@ -426,7 +413,7 @@ SCAN_START:
 		}
 		if( pc_canceled ) {		/* pc canceled or file write error. */
 			/* delete disused scanned-file. */
-			ui_dialog_save_scan_dispose_file( data, &node );
+			ui_dialog_save_scan_dispose_file(&node );
 			break;
 		}
 		
@@ -474,7 +461,7 @@ ERROR_BACKEND:
 	CIJSC_cancel();
 	
 	/* delete scanned file. */
-	ui_dialog_save_scan_dispose_file( data, &node );
+	ui_dialog_save_scan_dispose_file(&node );
 	
 	/* hide progress bar. */
 	CIJSC_UI_progress_hide( data );

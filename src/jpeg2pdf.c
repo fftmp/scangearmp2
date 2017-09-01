@@ -188,7 +188,7 @@ EXIT:
 
 CNMSInt32 CnmsPDF_Open( CNMSVoid **ppw, CNMSFd fd )
 {
-	CNMSInt32		ret = CNMS_ERR, i;
+	CNMSInt32		ret = CNMS_ERR;
 	CNMSPdfWork		*p = CNMSNULL;
 	
 	if ( fd == CNMS_FILE_ERR ) {
@@ -459,14 +459,13 @@ CNMSInt32 CnmsPDF_StartPage(
 	CNMSInt32		type,
 	CNMSInt32		rotate )
 {
-	CNMSInt32		ret = CNMS_ERR, ldata, buf_size;
-	CNMSPdfPage		*p = CNMSNULL, first_page;
+	CNMSInt32		ret = CNMS_ERR, ldata;
+	CNMSPdfPage		*p = CNMSNULL;
 	CNMSByte		str[1024];
 	CNMSInt			len, len_c;
 	CNMSByte		*ProcSetImage[CNMS_PDF_IMAGE_NUM]		= { "ImageC", "ImageG", "ImageG" };
 	CNMSByte		*ColorSpace[CNMS_PDF_IMAGE_NUM]			= { "DeviceRGB", "DeviceGray", "DeviceGray" };
 	CNMSInt32		BitsPerComponent[CNMS_PDF_IMAGE_NUM]	= { 8, 8, 1 };
-	CNMSInt32		ComponentNum[CNMS_PDF_IMAGE_NUM]		= { 3, 1, 1 };
 	CNMSPdfWork		*pwork = (CNMSPdfWork *)pw;
 	
 	if ( pwork == CNMSNULL || w <= 0 || h <= 0 || res <= 0 ||
@@ -630,11 +629,10 @@ EXIT:
 
 CNMSInt32 CnmsPDF_EndPage( CNMSVoid *pw )
 {
-	CNMSInt32		ret = CNMS_ERR, ldata, f_size;
+	CNMSInt32		ret = CNMS_ERR, ldata;
 	CNMSPdfPage		*p = CNMSNULL;
 	CNMSByte		str[1024];
 	CNMSInt			len;
-	int				z_ret;
 	CNMSPdfWork		*pwork = (CNMSPdfWork *)pw;
 
 	if ( pwork == CNMSNULL ) {

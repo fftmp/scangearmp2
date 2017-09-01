@@ -350,7 +350,7 @@ static CMT_Status attach(
 	int				speed = 2;
 
 	int				usb_opend = 0;
-	int				flag_usb = 0, i = 0;
+	int				flag_usb = 0;
 
 	if( strncmp( name, "libusb:", 7 ) >= 0 ){
 		flag_usb = 1;
@@ -446,7 +446,6 @@ CMT_Status CIJSC_init( void *cnnl_callback )
 	FILE *fp = NULL;
 	CANON_Device	*first_usb = NULL, *first_net = NULL, *first_net2 = NULL, *tmp_dev;
 	CANON_Device	c_dev;
-	int		i;
 
 	num_devices = 0;
 
@@ -710,7 +709,6 @@ void CIJSC_close( void )
 -------------------------------------------------*/
 CMT_Status CIJSC_start( CANON_ScanParam *param )
 {
-	int				scanmode;
 	int status;
 	CANON_Scanner *s = &canon_device;
 	CANON_SCANDATA	scandata;

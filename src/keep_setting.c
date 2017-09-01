@@ -48,8 +48,6 @@ typedef struct{
 
 static LPKEEPSETTINGCOMMONCOMP	lpCommonSetting = CNMSNULL;
 
-static CNMSInt32 SubReadSettingFile( CNMSFd fd );
-static CNMSInt32 SubWriteSettingFile( CNMSFd fd );
 #ifdef	__CNMS_DEBUG_KEEP_SETTING__
 static CNMSVoid DebugKeepSettingComp( CNMSVoid );
 #endif
@@ -85,7 +83,7 @@ CNMSInt32 KeepSettingCommonOpen( CNMSVoid )
 		}
 	}
 	/* set default value */
-	ldata = FileControlGetStatus( lpCommonSetting->file_path, PATH_MAX );
+	ldata = FileControlGetStatus(lpCommonSetting->file_path);
 	if( ldata == FILECONTROL_STATUS_NOT_EXIST ){
 		if( KeepSettingCommonSetString( KEEPSETTING_COMMON_ID_MACADDRESS, KEEPSETTING_MAC_ADDRESS_USB ) != CNMS_NO_ERR ){
 			DBGMSG( "[KeepSettingCommonOpen]Error is occured in KeepSettingCommonSetString.\n" );
@@ -120,7 +118,7 @@ EXIT:
 
 static CNMSInt32 SubReadSettingCommonFile( CNMSFd fd )
 {
-	CNMSInt32	ret = CNMS_ERR, rasSize, i, j, ldata;
+	CNMSInt32	ret = CNMS_ERR, rasSize, i, j;
 	CNMSLPSTR	lpBuf = CNMSNULL, lpStr;
 
 	if( ( lpBuf = CnmsGetMem( KEEP_SETTING_RASTER_LEN ) ) == CNMSNULL ){
@@ -136,7 +134,6 @@ static CNMSInt32 SubReadSettingCommonFile( CNMSFd fd )
 		}
 		for( i = 0 ; i < KEEPSETTING_COMMON_ID_MAX ; i ++ ){
 			lpStr = KeepSettingCommonStrArray[ i ];
-			ldata = CNMS_ERR;
 			for( j = 0 ; j < rasSize ; j ++ ){
 				if( lpBuf[ j ] != lpStr[ j ] ){
 					if( lpStr[ j ] == '\0' ){

@@ -56,9 +56,7 @@ typedef struct {
 } FILECONTROLEX;
 
 
-CNMSInt32 FileControlGetStatus(
-		CNMSLPSTR		path,
-		CNMSInt32		pathLen )
+CNMSInt32 FileControlGetStatus(CNMSLPSTR path)
 {
 	struct stat		buf;
 	CNMSLPSTR		path_dir = CNMSNULL, path_temp;

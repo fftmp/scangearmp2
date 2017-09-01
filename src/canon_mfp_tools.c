@@ -368,7 +368,7 @@ int cmt_libusb_init(void)
 	const struct libusb_interface *iptr = NULL;					/* Array of interface descriptors */
 	const struct libusb_interface_descriptor *altptr = NULL;	/* interface descriptor */
 	struct libusb_config_descriptor *cptr = NULL;				/* configuration descriptor */
-	int i, cNum, iNum, altNum;
+	int i;
 	unsigned char busnum, address;
 	
 	if( !g_context ){
@@ -489,10 +489,6 @@ CMT_Status cmt_libusb_open(const char *devname, int *index)
 	struct libusb_device_descriptor devdesc;					/* device descriptor */
 	const struct libusb_interface *iptr = NULL;					/* Array of interface descriptors */
 	const struct libusb_interface_descriptor *altptr = NULL;	/* interface descriptor */
-	uint8_t cNum,												/* configuration number */
-			iNum,												/* interface number */
-			altNum;	
-	
 	int ret;
 	int dev_index, ep_no, numEndpoints;
 	struct libusb_config_descriptor *cptr = NULL;		/* configuration descriptor */
@@ -758,7 +754,7 @@ CMT_Status cmt_libusb_bulk_read( int index, unsigned char *buffer, unsigned long
 void cmt_network_init( void *cnnl_callback )
 {
 	CNNLHANDLE hmdl=NULL;
-	int i=0, j=0, k=0, max = NETWORK_DEV_MAX, found=0, found_cache=0, timeout_msec = 0;
+	int j=0, k=0, max = NETWORK_DEV_MAX, found=0, found_cache=0, timeout_msec = 0;
 	CNNLNICINFO *nic;
 	char model[STRING_SHORT], ipaddr[STRING_SHORT];
 	unsigned long version = 110, versize;
@@ -1152,7 +1148,6 @@ void cmt_network2_init( void *cnnl_callback )
 	unsigned int i;
 	int num = 0;
 	unsigned int timeout;
-	void *cnnet2_callback = NULL;
 	
 	if( network2_inited ) return;
 	network2_inited = 1;

@@ -34,7 +34,6 @@
 
 int CIJSC_UI_error_show( SGMP_Data *data, GtkWidget *parent )
 {
-	int		index_id, index_mes;
 	int		ret = -1;
 	int		errorCode = 0;
 	

@@ -53,7 +53,7 @@ enum{
 	FILECONTROL_SEEK_MAX,
 };
 
-CNMSInt32 FileControlGetStatus( CNMSLPSTR lpPath, CNMSInt32 pathLen );
+CNMSInt32 FileControlGetStatus(CNMSLPSTR lpPath);
 CNMSFd    FileControlMakeTempFile( CNMSLPSTR lpPath, CNMSInt32 pathLen );
 CNMSFd    FileControlOpenFile( CNMSInt32 type, CNMSLPSTR lpPath );
 CNMSVoid  FileControlCloseFile( CNMSFd fd );

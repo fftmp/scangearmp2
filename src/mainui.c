@@ -115,7 +115,6 @@ static int ui_main_is_en_US( void )
 static void ui_main_combobox_scanmode_init( SGMP_Data *data, CANON_Device const *dev )
 {
 	GtkListStore		*store;
-	GtkCellRenderer		*renderer;
 	GtkTreeIter			iter;
 	
 	DBGMSG("->\n");
@@ -140,10 +139,9 @@ static void ui_main_combobox_scanmode_init( SGMP_Data *data, CANON_Device const 
 	gtk_combo_box_set_active( GTK_COMBO_BOX( data->combobox_scanmode ) , 0 );
 }
 
-static void ui_main_other_combobox_init( SGMP_Data *data, GtkWidget *combo, CIJSC_MAINUI_ITEM_TABLE *table )
+static void ui_main_other_combobox_init(GtkWidget *combo, CIJSC_MAINUI_ITEM_TABLE *table )
 {
 	GtkListStore		*store;
-	GtkCellRenderer		*renderer;
 	GtkTreeIter			iter;
 	int					i;
 	
@@ -158,7 +156,7 @@ static void ui_main_other_combobox_init( SGMP_Data *data, GtkWidget *combo, CIJS
 	gtk_combo_box_set_active( GTK_COMBO_BOX( combo ) , 0 );
 }
 
-static int ui_main_combobox_get_id( SGMP_Data *data, GtkWidget *combo, CIJSC_MAINUI_ITEM_TABLE *table )
+static int ui_main_combobox_get_id(GtkWidget *combo, CIJSC_MAINUI_ITEM_TABLE *table )
 {
 	GtkListStore	*store;
 	GtkTreeIter		iter;
@@ -182,7 +180,7 @@ static int ui_main_combobox_get_id( SGMP_Data *data, GtkWidget *combo, CIJSC_MAI
 	return (int)table[i].id;
 }
 
-static int ui_main_combobox_set_id( SGMP_Data *data, GtkWidget *combo, CIJSC_MAINUI_ITEM_TABLE *table, int id )
+static int ui_main_combobox_set_id(GtkWidget *combo, CIJSC_MAINUI_ITEM_TABLE *table, int id )
 {
 	GtkListStore	*store;
 	GtkTreeIter		iter;
@@ -223,10 +221,10 @@ static void ui_main_combobox_set_default_size( SGMP_Data *data )
 {
 	DBGMSG("->\n");
 	if ( ui_main_is_en_US() ) {
-		ui_main_combobox_set_id( data, data->combobox_size, size_adf_table, CIJSC_SIZE_LETTER );
+		ui_main_combobox_set_id(data->combobox_size, size_adf_table, CIJSC_SIZE_LETTER );
 	}
 	else {
-		ui_main_combobox_set_id( data, data->combobox_size, size_adf_table, CIJSC_SIZE_A4 );
+		ui_main_combobox_set_id(data->combobox_size, size_adf_table, CIJSC_SIZE_A4 );
 	}
 }
 
@@ -235,10 +233,10 @@ static void ui_main_button_scan_main( SGMP_Data *data )
 	DBGMSG("->\n");
 	gtk_widget_set_sensitive( data->window_main, FALSE );
 	/* set scan parameters. */
-	data->scan_scanmode = ui_main_combobox_get_id( data, data->combobox_scanmode, (CIJSC_MAINUI_ITEM_TABLE *)scanmode_table );
-	data->scan_source = ui_main_combobox_get_id( data, data->combobox_source, (CIJSC_MAINUI_ITEM_TABLE *)source_table );
-	data->scan_color = ui_main_combobox_get_id( data, data->combobox_colormode, (CIJSC_MAINUI_ITEM_TABLE *)colormode_table );
-	data->scan_size = ui_main_combobox_get_id( data, data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_platen_table );
+	data->scan_scanmode = ui_main_combobox_get_id(data->combobox_scanmode, (CIJSC_MAINUI_ITEM_TABLE *)scanmode_table );
+	data->scan_source = ui_main_combobox_get_id(data->combobox_source, (CIJSC_MAINUI_ITEM_TABLE *)source_table );
+	data->scan_color = ui_main_combobox_get_id(data->combobox_colormode, (CIJSC_MAINUI_ITEM_TABLE *)colormode_table );
+	data->scan_size = ui_main_combobox_get_id(data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_platen_table );
 	
 	/* scan and save scanned data. */
 	CIJSC_Scan_And_Save( data );
@@ -254,14 +252,14 @@ void CIJSC_UI_main_show( SGMP_Data	*data, CANON_Device const *dev )
 	
 	/* init combobox. */
 	data->ignore_combobox_changed = TRUE;
-	ui_main_other_combobox_init( data, data->combobox_source, source_table );
-	ui_main_other_combobox_init( data, data->combobox_colormode, colormode_table );
-	ui_main_other_combobox_init( data, data->combobox_size, size_platen_table );
+	ui_main_other_combobox_init(data->combobox_source, source_table );
+	ui_main_other_combobox_init(data->combobox_colormode, colormode_table );
+	ui_main_other_combobox_init(data->combobox_size, size_platen_table );
 	ui_main_combobox_scanmode_init( data, dev );
 	/* set default size. */
 	ui_main_combobox_set_default_size( data );
 	/* save current scanmode. */
-	data->prev_scanmode = ui_main_combobox_get_id( data, data->combobox_scanmode, (CIJSC_MAINUI_ITEM_TABLE *)scanmode_table );
+	data->prev_scanmode = ui_main_combobox_get_id(data->combobox_scanmode, (CIJSC_MAINUI_ITEM_TABLE *)scanmode_table );
 	data->ignore_combobox_changed = FALSE;
 	
 	/* show main ui. */
@@ -272,16 +270,12 @@ void CIJSC_UI_main_show( SGMP_Data	*data, CANON_Device const *dev )
 
 void CIJSC_UI_main_combobox_scanmode_changed( SGMP_Data	*data )
 {
-	GtkListStore	*store;
-	GtkTreeIter		iter;
-	gint			select_no, i;
-	gchar			*str;
 	int				current_scanmode;
 	int				current_size;
 
 	DBGMSG("->\n");
 	if ( !data->ignore_combobox_changed ) {
-		current_scanmode = ui_main_combobox_get_id( data, data->combobox_scanmode, (CIJSC_MAINUI_ITEM_TABLE *)scanmode_table );
+		current_scanmode = ui_main_combobox_get_id(data->combobox_scanmode, (CIJSC_MAINUI_ITEM_TABLE *)scanmode_table );
 		DBGMSG("scanmode changed : %s -> %s\n", 
 				gettext( scanmode_table[data->prev_scanmode].str ),
 				gettext( scanmode_table[current_scanmode].str ) );
@@ -296,9 +290,9 @@ void CIJSC_UI_main_combobox_scanmode_changed( SGMP_Data	*data )
 		if ( data->prev_scanmode == CIJSC_SCANMODE_PLATEN ) {
 			/* PLATEN -> ADF */
 			/* get current size and set current size. */
-			current_size = ui_main_combobox_get_id( data, data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_platen_table );
-			ui_main_other_combobox_init( data, data->combobox_size, size_adf_table );
-			if ( ui_main_combobox_set_id( data, data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_adf_table, current_size ) ) {
+			current_size = ui_main_combobox_get_id(data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_platen_table );
+			ui_main_other_combobox_init(data->combobox_size, size_adf_table );
+			if ( ui_main_combobox_set_id(data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_adf_table, current_size ) ) {
 				/* set default size. */
 				ui_main_combobox_set_default_size( data );
 			}
@@ -307,9 +301,9 @@ void CIJSC_UI_main_combobox_scanmode_changed( SGMP_Data	*data )
 			if ( current_scanmode == CIJSC_SCANMODE_PLATEN ) {
 				/* ADF -> PLATEN */
 				/* get current size and set current size. */
-				current_size = ui_main_combobox_get_id( data, data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_adf_table );
-				ui_main_other_combobox_init( data, data->combobox_size, size_platen_table );
-				if ( ui_main_combobox_set_id( data, data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_platen_table, current_size ) ) {
+				current_size = ui_main_combobox_get_id(data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_adf_table );
+				ui_main_other_combobox_init(data->combobox_size, size_platen_table );
+				if ( ui_main_combobox_set_id(data->combobox_size, (CIJSC_MAINUI_ITEM_TABLE *)size_platen_table, current_size ) ) {
 					/* set default size. */
 					ui_main_combobox_set_default_size( data );
 				}

@@ -44,32 +44,12 @@
 
 #define WAIT_SECOND				{usleep(1000000);}
 
-static void CnmsScanFlowGtkMainIteration(
-									int wait10msecCount				)
-{
-	struct	timespec mytime;
-	memset( (char *)&mytime, 0, sizeof(mytime) );
-	mytime.tv_sec   = 0;
-	mytime.tv_nsec  = 10000000;	/* 10msec */
-	
-	if ( wait10msecCount > 0 ) {
-		while( wait10msecCount-- ) {
-			nanosleep( &mytime, NULL );
-			while( gtk_events_pending() ){
-				gtk_main_iteration();
-			}
-		}
-	}
-}
-
-
-static void create_combobox(
+ static void create_combobox(
 	SGMP_Data	*data,
 	GtkWidget	*combobox )
 {
 	GtkListStore		*store;
 	GtkCellRenderer		*renderer;
-	GtkTreeIter			iter;
 	
 	data->ignore_combobox_changed = TRUE;
 	
@@ -89,7 +69,6 @@ int main(int argc, char **argv )
 {
 	SGMP_Data		*data;
 	GError			*error = NULL;
-	GtkCellRenderer	*renderer;
 	char 			*home_dir = NULL;
 	char			strbuf[PATH_MAX];
 	CANON_Device const	*selected = NULL;
