@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dlfcn.h>
+#include <stdbool.h>
 
 #include "support.h"
 
@@ -719,8 +720,8 @@ CMT_Status CIJSC_start( CANON_ScanParam *param )
 		cmt_network_mutex_lock();
 	}
 
-	s->scanning = TRUE;
-	s->scanFinished = FALSE;
+	s->scanning = true;
+	s->scanFinished = false;
 
 	s->xres = param->XRes;
 	s->yres = param->YRes;
@@ -813,7 +814,7 @@ CMT_Status CIJSC_read(
 	CANON_Scanner *s = &canon_device;
 
 	if ( s->scanFinished ) {
-		s->scanning = FALSE;
+		s->scanning = false;
 		status = canon_end_scan();
 
 		status = CMT_STATUS_EOF;
@@ -832,7 +833,7 @@ CMT_Status CIJSC_read(
 	}
 
 	if ( *len == 0 ) {
-		s->scanFinished = TRUE;
+		s->scanFinished = true;
 		status = CMT_STATUS_EOF;
 		goto _EXIT;
 	}
@@ -853,7 +854,7 @@ void CIJSC_cancel( void )
 
 	DBGMSG("\n");
 
-	s->scanning = FALSE;
+	s->scanning = false;
 
 	if ( s->scanFinished ) {
 		/* end scan */

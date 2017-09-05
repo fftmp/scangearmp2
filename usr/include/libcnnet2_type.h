@@ -26,6 +26,8 @@
 #ifndef __INC_CNNET2_TYPE__
 #define __INC_CNNET2_TYPE__
 
+#include <stdbool.h>
+
 typedef enum {
   CNNET2_ERROR_CODE_SUCCESS        =  0,
   CNNET2_ERROR_CODE_PARAM          = -1,
@@ -46,10 +48,6 @@ typedef enum {
   CNNET2_SETTING_FLAG_DISCOVER_PACKET_COUNT,              
   CNNET2_SETTING_FLAG_DISCOVER_PACKET_WAIT_MILLIS,        
 } CNNET2_SETTING_FLAGS;
-
-#ifndef __cplusplus
-typedef char bool;
-#endif
 
 typedef struct {
   int nicIndex_;
