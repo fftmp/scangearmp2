@@ -38,7 +38,7 @@ on_window_main_delete_event(	GtkWidget	*widget,
 								GdkEvent	*event,
 								SGMP_Data	*data );
 
-G_MODULE_EXPORT gboolean
+G_MODULE_EXPORT void
 on_combobox_scanmode_changed(	GtkWidget	*widget,
 								SGMP_Data	*data );
 

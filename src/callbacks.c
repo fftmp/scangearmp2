@@ -35,8 +35,8 @@
 	main window
 */
 G_MODULE_EXPORT gboolean
-on_window_main_delete_event(	GtkWidget	*widget,
-								GdkEvent	*event,
+on_window_main_delete_event(__attribute__((unused)) GtkWidget	*widget,
+			    __attribute__((unused)) GdkEvent	*event,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -52,8 +52,8 @@ on_window_main_delete_event(	GtkWidget	*widget,
 	}
 }
 
-G_MODULE_EXPORT gboolean
-on_combobox_scanmode_changed(	GtkWidget	*widget,
+G_MODULE_EXPORT void
+on_combobox_scanmode_changed(__attribute__((unused)) GtkWidget	*widget,
 								SGMP_Data	*data )
 {
 #ifdef _SGMP_DEBUG_VERBOSE_
@@ -63,8 +63,8 @@ on_combobox_scanmode_changed(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_combobox_source_changed(	GtkWidget	*widget,
-							SGMP_Data	*data )
+on_combobox_source_changed(__attribute__((unused)) GtkWidget	*widget,
+			   __attribute__((unused)) SGMP_Data	*data )
 {
 #ifdef _SGMP_DEBUG_VERBOSE_
 	DBGMSG("->\n");
@@ -72,8 +72,8 @@ on_combobox_source_changed(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_combobox_colormode_changed(	GtkWidget	*widget,
-								SGMP_Data	*data )
+on_combobox_colormode_changed(__attribute__((unused)) GtkWidget	*widget,
+			      __attribute__((unused)) SGMP_Data	*data )
 {
 #ifdef _SGMP_DEBUG_VERBOSE_
 	DBGMSG("->\n");
@@ -81,8 +81,8 @@ on_combobox_colormode_changed(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_combobox_size_changed(	GtkWidget	*widget,
-							SGMP_Data	*data )
+on_combobox_size_changed(__attribute__((unused)) GtkWidget	*widget,
+			 __attribute__((unused)) SGMP_Data	*data )
 {
 #ifdef _SGMP_DEBUG_VERBOSE_
 	DBGMSG("->\n");
@@ -90,7 +90,7 @@ on_combobox_size_changed(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_scanjpeg_clicked(	GtkWidget	*widget,
+on_button_scanjpeg_clicked(__attribute__((unused)) GtkWidget	*widget,
 							SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -100,7 +100,7 @@ on_button_scanjpeg_clicked(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_scanpdf_clicked(	GtkWidget	*widget,
+on_button_scanpdf_clicked(__attribute__((unused)) GtkWidget	*widget,
 							SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -110,7 +110,7 @@ on_button_scanpdf_clicked(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_version_clicked(	GtkWidget	*widget,
+on_button_version_clicked(__attribute__((unused)) GtkWidget	*widget,
 							SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -122,8 +122,8 @@ on_button_version_clicked(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_close_clicked(	GtkWidget	*widget,
-							SGMP_Data	*data )
+on_button_close_clicked(__attribute__((unused)) GtkWidget	*widget,
+			__attribute__((unused)) SGMP_Data	*data )
 {
 	DBGMSG("->\n");
 	
@@ -135,8 +135,8 @@ on_button_close_clicked(	GtkWidget	*widget,
 	select device dialog
 */
 G_MODULE_EXPORT gboolean
-on_dialog_select_delete_event(	GtkWidget	*widget,
-								GdkEvent	*event,
+on_dialog_select_delete_event(	__attribute__((unused)) GtkWidget	*widget,
+				__attribute__((unused)) GdkEvent	*event,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -146,7 +146,7 @@ on_dialog_select_delete_event(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_select_update_clicked(	GtkWidget	*widget,
+on_button_select_update_clicked(__attribute__((unused)) GtkWidget	*widget,
 									SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -161,7 +161,7 @@ on_button_select_update_clicked(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_select_cancel_clicked(	GtkWidget	*widget,
+on_button_select_cancel_clicked(__attribute__((unused)) GtkWidget	*widget,
 									SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -172,7 +172,7 @@ on_button_select_cancel_clicked(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_select_ok_clicked(	GtkWidget	*widget,
+on_button_select_ok_clicked(__attribute__((unused)) GtkWidget	*widget,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -186,8 +186,8 @@ on_button_select_ok_clicked(	GtkWidget	*widget,
 	save dialog
 */
 G_MODULE_EXPORT gboolean
-on_dialog_save_delete_event(	GtkWidget	*widget,
-								GdkEvent	*event,
+on_dialog_save_delete_event(__attribute__((unused)) GtkWidget	*widget,
+			    __attribute__((unused)) GdkEvent	*event,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -198,7 +198,7 @@ on_dialog_save_delete_event(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_save_save_clicked(	GtkWidget	*widget,
+on_button_save_save_clicked(__attribute__((unused)) GtkWidget	*widget,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -207,7 +207,7 @@ on_button_save_save_clicked(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_save_cancel_clicked(	GtkWidget	*widget,
+on_button_save_cancel_clicked(__attribute__((unused)) GtkWidget	*widget,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -220,8 +220,8 @@ on_button_save_cancel_clicked(	GtkWidget	*widget,
 	version dialog
 */
 G_MODULE_EXPORT gboolean
-on_dialog_version_delete_event(	GtkWidget	*widget,
-								GdkEvent	*event,
+on_dialog_version_delete_event(	__attribute__((unused)) GtkWidget	*widget,
+				__attribute__((unused)) GdkEvent	*event,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -232,7 +232,7 @@ on_dialog_version_delete_event(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_version_ok_clicked(	GtkWidget	*widget,
+on_button_version_ok_clicked(__attribute__((unused)) GtkWidget	*widget,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -247,8 +247,8 @@ on_button_version_ok_clicked(	GtkWidget	*widget,
 	notify dialog
 */
 G_MODULE_EXPORT gboolean
-on_dialog_notify_delete_event(	GtkWidget	*widget,
-								GdkEvent	*event,
+on_dialog_notify_delete_event(__attribute__((unused)) GtkWidget	*widget,
+			      __attribute__((unused)) GdkEvent	*event,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -258,7 +258,7 @@ on_dialog_notify_delete_event(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_dialog_notify_hide(	GtkWidget	*widget,
+on_dialog_notify_hide(__attribute__((unused)) GtkWidget	*widget,
 						SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -271,16 +271,16 @@ on_dialog_notify_hide(	GtkWidget	*widget,
 	progress bar dialog
 */
 G_MODULE_EXPORT gboolean
-on_dialog_progress_delete_event(	GtkWidget	*widget,
-									GdkEvent	*event,
-									SGMP_Data	*data )
+on_dialog_progress_delete_event(__attribute__((unused)) GtkWidget	*widget,
+				__attribute__((unused)) GdkEvent	*event,
+				__attribute__((unused)) SGMP_Data	*data )
 {
 	DBGMSG("->\n");
 	return TRUE;
 }
 
 G_MODULE_EXPORT void
-on_button_prog_cancel_clicked(	GtkWidget	*widget,
+on_button_prog_cancel_clicked(__attribute__((unused)) GtkWidget	*widget,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -296,8 +296,8 @@ on_button_prog_cancel_clicked(	GtkWidget	*widget,
 	error dialog
 */
 G_MODULE_EXPORT gboolean
-on_dialog_error_delete_event(	GtkWidget	*widget,
-								GdkEvent	*event,
+on_dialog_error_delete_event(__attribute__((unused)) GtkWidget	*widget,
+			     __attribute__((unused)) GdkEvent	*event,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -313,7 +313,7 @@ on_dialog_error_delete_event(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_error_ok_clicked(	GtkWidget	*widget,
+on_button_error_ok_clicked(__attribute__((unused)) GtkWidget	*widget,
 							SGMP_Data	*data )
 {
 	DBGMSG("->\n");
@@ -324,7 +324,7 @@ on_button_error_ok_clicked(	GtkWidget	*widget,
 }
 
 G_MODULE_EXPORT void
-on_button_error_cancel_clicked(	GtkWidget	*widget,
+on_button_error_cancel_clicked(__attribute__((unused)) GtkWidget	*widget,
 								SGMP_Data	*data )
 {
 	DBGMSG("->\n");

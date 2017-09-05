@@ -45,7 +45,7 @@ static CIJSC_PROGRESSBAR_TABLE progressbar_table[] = {
 	{ -1,	NULL, NULL, },
 };
 
-static ui_progress_current_id = -1;
+static int ui_progress_current_id = -1;
 static SGMP_Data *ui_progress_data = NULL;
 
 int CIJSC_UI_progress_show( SGMP_Data *data, int id )
@@ -97,7 +97,7 @@ _EXIT:
 	return ret;
 }
 
-int CIJSC_UI_progress_hide( SGMP_Data *data )
+void CIJSC_UI_progress_hide( SGMP_Data *data )
 {
 	gtk_widget_hide( data->dialog_progress );
 	while( gtk_events_pending() ){

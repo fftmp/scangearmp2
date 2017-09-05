@@ -249,7 +249,7 @@ CNMSInt32 CnmsPDF_StartDoc( CNMSVoid *pw )
 	}
 	
 	len = snprintf( str, sizeof(str), CNMS_PDF_HEADER );
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -290,7 +290,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 	}
 	/* write Pages(1) */
 	len = snprintf( str, sizeof(str), CNMS_PDF_PAGES_OBJ1 );
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -310,7 +310,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 		}
 	
 		len = snprintf( str, sizeof(str), CNMS_PDF_PAGES_OBJ2, (int)p->obj_id );	/* Page object id */
-		if ( len >= sizeof(str) || len < 0 ) {
+		if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 			DBGMSG( " string is too long!\n" );
 			goto EXIT;
 		}
@@ -324,7 +324,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 	
 	/* write Pages(3) */
 	len = snprintf( str, sizeof(str), CNMS_PDF_PAGES_OBJ3, (int)pwork->page_num );	/* Count */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -340,7 +340,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 	}
 	/* write Catalog */
 	len = snprintf( str, sizeof(str), CNMS_PDF_CATALOG_OBJ );
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -362,13 +362,13 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 	len = snprintf(str_t, sizeof(str_t), CNMS_PDF_INFO_DATES,
 		tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
 		tm.tm_hour, tm.tm_min, tm.tm_sec, sign_c, tz_h, tz_m );
-	if ( len >= sizeof(str_t) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str_t) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
 	/* write Info */
 	len = snprintf( str, sizeof(str), CNMS_PDF_INFO_OBJ, str_t );			/* CreationDate */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -384,7 +384,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 	}
 	/* write xref(1) */
 	len = snprintf( str, sizeof(str), CNMS_PDF_XREF_OBJ1, (int)size );	/* object num */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -398,7 +398,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 			pwork->offset_table[ CNMS_PDF_ENDDOC_CATALOG ],			/* object id = 1 : Catalog */
 			pwork->offset_table[ CNMS_PDF_ENDDOC_PAGES ],			/* object id = 2 : Pages */
 			pwork->offset_table[ CNMS_PDF_ENDDOC_INFO ] );			/* object id = 3 : Info */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -414,7 +414,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 		/* write offset : CNMS_PDF_PAGE_OBJ_PAGE -> CNMS_PDF_PAGE_OBJ_CONTENTS_LEN */
 		for ( i = 0; i < CNMS_PDF_PAGE_OBJ_NUM; i++ ) {
 			len = snprintf( str, sizeof(str), CNMS_PDF_XREF_OBJ2, p->offset_table[ i ] );	/* object id = 3 ~ */
-			if ( len >= sizeof(str) || len < 0 ) {
+			if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 				DBGMSG( " string is too long!\n" );
 				goto EXIT;
 			}
@@ -436,7 +436,7 @@ CNMSInt32 CnmsPDF_EndDoc( CNMSVoid *pw )
 	len = snprintf( str, sizeof(str), CNMS_PDF_TRAILER_OBJ,
 			(int)size,											/* object num */
 			pwork->offset_table[ CNMS_PDF_ENDDOC_XREF ] );		/* xref offset */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -532,7 +532,7 @@ CNMSInt32 CnmsPDF_StartPage(
 				(int)p->w_72, (int)p->h_72,							/* MediaBox */
 				(int)(p->obj_id + CNMS_PDF_PAGE_OBJ_CONTENTS) );	/* object id ( Contents ) */
 	}
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -550,7 +550,7 @@ CNMSInt32 CnmsPDF_StartPage(
 	len = snprintf( str, sizeof(str), CNMS_PDF_CONTENTS_OBJ1,
 			(int)(p->obj_id + CNMS_PDF_PAGE_OBJ_CONTENTS),			/* object id ( Contents ) */
 			(int)(p->obj_id + CNMS_PDF_PAGE_OBJ_CONTENTS_LEN) );	/* object id ( Length of Contents ) */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -562,7 +562,7 @@ CNMSInt32 CnmsPDF_StartPage(
 	len_c = len = snprintf( str, sizeof(str), CNMS_PDF_CONTENTS_OBJ2,
 			(int)p->w_72, (int)p->h_72,							/* CTM ( scaling ) */
 			(int)p->page );										/* ImX (X = page number) ... XObject/Image Name */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -573,7 +573,7 @@ CNMSInt32 CnmsPDF_StartPage(
 	
 	/* write Contents(3) */
 	len = snprintf( str, sizeof(str), CNMS_PDF_END_ST_OBJ );
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -591,7 +591,7 @@ CNMSInt32 CnmsPDF_StartPage(
 	len = snprintf( str, sizeof(str), CNMS_PDF_LENGTH_OBJ,
 			(int)(p->obj_id + CNMS_PDF_PAGE_OBJ_CONTENTS_LEN),		/* object id ( Length of Contents ) */
 			len_c );												/* length value */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -612,7 +612,7 @@ CNMSInt32 CnmsPDF_StartPage(
 			(int)p->w, (int)p->h,							/* Width/Height */
 			ColorSpace[ type ],								/* ColorSpace */
 			(int)BitsPerComponent[ type ] );				/* BitsPerComponent */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -644,7 +644,7 @@ CNMSInt32 CnmsPDF_EndPage( CNMSVoid *pw )
 	
 	/* <1> endstream, endobj (XObject) */
 	len = snprintf( str, sizeof(str), CNMS_PDF_END_ST_OBJ );
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -662,7 +662,7 @@ CNMSInt32 CnmsPDF_EndPage( CNMSVoid *pw )
 	len = snprintf( str, sizeof(str), CNMS_PDF_LENGTH_OBJ,
 			(int)(p->obj_id + CNMS_PDF_PAGE_OBJ_IMAGE_LEN),		/* object id ( Length of XObject stream ) */
 			(int)p->stream_len );								/* length value */
-	if ( len >= sizeof(str) || len < 0 ) {
+	if ( (unsigned int)len >= sizeof(str) || len < 0 ) {
 		DBGMSG( " string is too long!\n" );
 		goto EXIT;
 	}
@@ -702,7 +702,7 @@ CNMSInt32 CnmsPDF_WriteJpegData( CNMSVoid *pw, LPCNMS_NODE node, int (*callback)
 		goto	EXIT;
 	}
 	
-	while( readsize = FileControlReadFile( fd, buf, bufsize ) ) {
+	while( (readsize = FileControlReadFile( fd, buf, bufsize )) ) {
 		if ( ( ldata = FileControlWriteFile( pwork->fd, buf, readsize ) ) < 0 ) {
 			DBGMSG( " Error is occured in FileControlWriteFile.\n" );
 			goto EXIT;

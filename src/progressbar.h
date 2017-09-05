@@ -40,7 +40,7 @@ enum{
 
 
 int CIJSC_UI_progress_show( SGMP_Data *data, int id );
-int CIJSC_UI_progress_hide( SGMP_Data *data );
+void CIJSC_UI_progress_hide( SGMP_Data *data );
 int CIJSC_UI_progress_update_value( int pages, int total, int current );
 int CIJSC_UI_progress_update_pulse( void );
 void CIJSC_UI_progress_enable_cancel_button( SGMP_Data *data );

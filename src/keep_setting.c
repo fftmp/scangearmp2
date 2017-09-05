@@ -71,7 +71,7 @@ CNMSInt32 KeepSettingCommonOpen( CNMSVoid )
 	}
 	
 	/* init */
-	snprintf( lpCommonSetting->file_path, PATH_MAX, "/var/tmp/canon_sgmp2_setting.ini\0" );	/* Ver.2.20 */
+	snprintf( lpCommonSetting->file_path, PATH_MAX, "/var/tmp/canon_sgmp2_setting.ini" );	/* Ver.2.20 */
 	if( ( ldata = CnmsStrLen( lpCommonSetting->file_path ) ) <= 0 ){
 		DBGMSG( "[KeepSettingCommonOpen]Error is occured in CnmsStrLen.\n" );
 		goto	EXIT;
@@ -230,7 +230,7 @@ static CNMSInt32 SubWriteSettingCommonFile( CNMSFd fd )
 		goto	EXIT;
 	}
 	for( i = 0 ; i < KEEPSETTING_COMMON_ID_MAX ; i ++ ){
-		snprintf( lpBuf, KEEP_SETTING_RASTER_LEN, "%s%s\n\0", KeepSettingCommonStrArray[ i ], lpCommonSetting->str[ i ] );
+		snprintf( lpBuf, KEEP_SETTING_RASTER_LEN, "%s%s\n", KeepSettingCommonStrArray[ i ], lpCommonSetting->str[ i ] );
 		if( ( ldata = FileControlWriteFile( fd, lpBuf, CnmsStrLen( lpBuf ) ) ) != CNMS_NO_ERR ){
 			goto	EXIT;
 		}

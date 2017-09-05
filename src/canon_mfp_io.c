@@ -598,7 +598,7 @@ CMT_Status CIJSC_get_devices(
 CMT_Status CIJSC_open(
 	const char *name )	/* libusb:00X:00Y or MAC address */
 {
-	CANON_Device *dev;
+	CANON_Device *dev = NULL; /*make -Wall happy*/
 	return CIJSC_open2(name,dev);
 }
 

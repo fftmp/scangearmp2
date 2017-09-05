@@ -688,7 +688,7 @@ CMT_Status cmt_libusb_bulk_write( int index, unsigned char *buffer, unsigned lon
 	DBGMSG( " (*size:%d,request_bytes:%d)--->\n" ,*size,request_bytes);
 #endif
 	err = libusb_bulk_transfer( libusbdev[index].handle, libusbdev[index].ep_bulk_out_address,
-					(char *)buffer, request_bytes, &ret_bytes, LIBUSB_TIMEOUT );
+					(unsigned char *)buffer, request_bytes, &ret_bytes, LIBUSB_TIMEOUT );
 	
 	if ( err < 0 ) { /* error happend. */
 		libusb_clear_halt( libusbdev[index].handle, libusbdev[index].ep_bulk_out_address );
@@ -729,7 +729,7 @@ CMT_Status cmt_libusb_bulk_read( int index, unsigned char *buffer, unsigned long
 	DBGMSG( " (*size:%d,request_bytes:%d)--->\n" ,*size,request_bytes);
 #endif
 	err = libusb_bulk_transfer( libusbdev[index].handle, libusbdev[index].ep_bulk_in_address,
-					(char *)buffer, request_bytes, &ret_bytes, LIBUSB_TIMEOUT );
+					(unsigned char *)buffer, request_bytes, &ret_bytes, LIBUSB_TIMEOUT );
 	
 	if ( !ret_bytes ) {
 		if ( err < 0 ) { /* error happend. */
@@ -1145,7 +1145,6 @@ void cmt_network2_init( void *cnnl_callback )
 	tagSearchPrinterInfo *infoList = NULL;
 	CNNET2_ERROR_CODE err;
 	unsigned int size = 0;
-	unsigned int i;
 	int num = 0;
 	unsigned int timeout;
 	
@@ -1197,7 +1196,7 @@ void cmt_network2_init( void *cnnl_callback )
 	if ( num > NETWORK_DEV_MAX ) {
 		num = NETWORK_DEV_MAX;
 	}
-	for ( i=0; i<num; i++ ) {
+	for ( int i=0; i<num; i++ ) {
 		strncpy( network2dev[i].modelName, infoList[i].modelName_, STRING_SHORT-1 );
 		strncpy( network2dev[i].ipAddStr, infoList[i].ipAddressStr_, STRING_SHORT-1 );
 		snprintf( network2dev[i].macAddStr, STRING_SHORT-1, "%c%c-%c%c-%c%c-%c%c-%c%c-%c%c",

@@ -277,9 +277,9 @@ static void ui_dialog_save_scan_dispose_file_list( SGMP_Data *data, LPCNMS_ROOT 
 static int ui_dialog_save_scan_start( SGMP_Data *data, LPCNMS_ROOT root )
 {
 	CANON_ScanParam		param;
-	int					i;
+	unsigned int					i;
 	int					status;
-	char				*buf = NULL;
+	unsigned char				*buf = NULL;
 	int					errCode;
 	int					readBytes = 0;
 	int					pc_canceled = 0, updated_label = 0;
@@ -547,7 +547,7 @@ static void ui_dialog_save_show_notify( SGMP_Data *data )
 	gtk_main();
 }
 
-static int ui_dialog_save_save_result( SGMP_Data *data, LPCNMS_ROOT root )
+static void ui_dialog_save_save_result( SGMP_Data *data, LPCNMS_ROOT root )
 {
 	int				result;
 	
@@ -660,7 +660,7 @@ void CIJSC_UI_save_button_cancel_clicked( SGMP_Data *data )
 	gtk_main_quit();	/* exit loop : CIJSC_Scan_And_Save() */
 }
 
-void CIJSC_UI_notify_hide( SGMP_Data *data )
+void CIJSC_UI_notify_hide( __attribute__((unused)) SGMP_Data *data )
 {
 	DBGMSG("->\n");
 	
