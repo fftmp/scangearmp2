@@ -23,11 +23,6 @@
 #define NDEBUG
 #include "sanei_backend.h"
 
-#ifdef __GNUC__
-# define UNUSED(v) (void) v
-#else
-# define UNUSED(v)
-#endif
 #define	JPEGSCANBUFSIZE	(0x4000)	/* 16k */
 #define min(A,B) (((A)<(B)) ? (A) : (B))
 #define max(A,B) (((A)>(B)) ? (A) : (B))
@@ -221,7 +216,7 @@ static void skip_input_data (j_decompress_ptr cinfo, long num_bytes)
  * Terminate source --- called by jpeg_finish_decompress
  * after all data has been read.
  */
-static void term_source (j_decompress_ptr cinfo)
+static void term_source (__attribute__((unused)) j_decompress_ptr cinfo)
 {
 	/* We don't actually need to do anything */
 	return;
@@ -230,7 +225,7 @@ static void term_source (j_decompress_ptr cinfo)
  * Initialize source --- called by jpeg_read_header
  * before any data is actually read.
  */
-static void init_source (j_decompress_ptr cinfo)
+static void init_source (__attribute__((unused)) j_decompress_ptr cinfo)
 {
 	/* We don't actually need to do anything */
 	return;
@@ -276,7 +271,7 @@ static void my_error_exit(j_common_ptr cinfo)
 	longjmp(err->escape, 1);
 }
 
-static void output_no_message(j_common_ptr cinfo)
+static void output_no_message(__attribute__((unused)) j_common_ptr cinfo)
 {
 	/* do nothing */
 }
@@ -392,12 +387,10 @@ CMT_Status canon_sane_read(canon_sane_t * handled){
 }
 
 SANE_Status
-sane_init (SANE_Int * version_code, SANE_Auth_Callback authorize)
+sane_init (SANE_Int * version_code, __attribute__((unused)) SANE_Auth_Callback authorize)
 {
 	CMT_Status status;
 	CNMSInt32 cnms_status = CNMS_NO_ERR;
-
-	UNUSED (authorize);
 
 	if (version_code != NULL)
 		*version_code = SANE_VERSION_CODE(1, 0, 0);
@@ -452,9 +445,8 @@ const CANON_Device ** canon_get_device(int* num_scan,CMT_Status* status){
 }
 
 SANE_Status
-sane_get_devices (const SANE_Device *** device_list, SANE_Bool local_only)
+sane_get_devices (const SANE_Device *** device_list, __attribute__((unused)) SANE_Bool local_only)
 {
-	UNUSED (local_only);
 	int num_scan = 0;
 	const CANON_Device ** canon_list = NULL;
 	CMT_Status status;
@@ -691,7 +683,6 @@ sane_close (SANE_Handle h){
 		free(h);
 	}
 	KeepSettingCommonClose();
-	UNUSED(h);
 }
 
 const SANE_Option_Descriptor *
@@ -955,14 +946,14 @@ sane_read (SANE_Handle h, SANE_Byte * buf, SANE_Int maxlen, SANE_Int * len){
 }
 
 SANE_Status
-sane_get_select_fd (SANE_Handle h, SANE_Int * fd)
+sane_get_select_fd (__attribute__((unused)) SANE_Handle h, __attribute__((unused)) SANE_Int * fd)
 {
 	return SANE_STATUS_UNSUPPORTED;
 }
 
 SANE_Status
-sane_set_io_mode(SANE_Handle handle,
-			SANE_Bool non_blocking)
+sane_set_io_mode(__attribute__((unused)) SANE_Handle handle,
+			__attribute__((unused)) SANE_Bool non_blocking)
 {
 	return SANE_STATUS_UNSUPPORTED;
 }
