@@ -35,9 +35,6 @@ CNMSInt32 lastIOErrCode = 0;
 CNMSInt32 lastBackendErrCode = 0;
 CNMSInt32 lastModuleErrCode = 0;
 
-static const char vendor_str[] = "CANON";
-static const char type_str[] = "multi-function peripheral";
-
 static const SANE_Device **dev_list = NULL;
 
 
@@ -70,22 +67,6 @@ enum{
 	CIJSC_SCANMAIN_SCAN_FINISHED = 0,
 	CIJSC_SCANMAIN_SCAN_CANCELED,
 	CIJSC_SCANMAIN_SCAN_ERROR,
-};
-
-static const CIJSC_SIZE_TABLE sourceSize[] = {
-	{ CIJSC_SIZE_CARD,		1074,  649 },		// Card
-	{ CIJSC_SIZE_L_L,		1500, 1051 },		// L Landscape
-	{ CIJSC_SIZE_L_P,		1051, 1500 },		// L Portrait
-	{ CIJSC_SIZE_4X6_L,		1800, 1200 },		// 4"x6" Landscape
-	{ CIJSC_SIZE_4X6_P,		1200, 1800 },		// 4"x6" Portrait
-	{ CIJSC_SIZE_HAGAKI_L,	1748, 1181 },		// Hagaki Landscape
-	{ CIJSC_SIZE_HAGAKI_P,	1181, 1748 },		// Hagaki Portrait
-	{ CIJSC_SIZE_2L_L,		2102, 1500 },		// 2L Landscape
-	{ CIJSC_SIZE_2L_P,		1500, 2102 },		// 2L Portrait
-	{ CIJSC_SIZE_A5,		1748, 2480 },		// A5
-	{ CIJSC_SIZE_B5,		2149, 3035 },		// B5
-	{ CIJSC_SIZE_A4,		2480, 3507 },		// A4 size
-	{ CIJSC_SIZE_LETTER,	2550, 3300 }		// Letter
 };
 
 static const SANE_String_Const mode_list[] = {
@@ -420,7 +401,7 @@ sane_init (SANE_Int * version_code, SANE_Auth_Callback authorize)
 
 	if (version_code != NULL)
 		*version_code = SANE_VERSION_CODE(1, 0, 0);
-	status = CIJSC_init((void*)NULL);
+	status = CIJSC_init(NULL);
 	if (status != CMT_STATUS_GOOD)
 	{
 		return show_sane_cmt_error(status);
@@ -503,7 +484,6 @@ sane_get_devices (const SANE_Device *** device_list, SANE_Bool local_only)
 }
 
 static CMT_Status init_canon_options(canon_sane_t * handled){
-	unsigned long i;
 	SGMP_Data_Lite * data = NULL;
 	data = (SGMP_Data_Lite*)calloc(1,sizeof(SGMP_Data_Lite));
 	if(!data){
@@ -709,7 +689,6 @@ sane_close (SANE_Handle h){
 	CIJSC_close( );
 	if(h){
 		free(h);
-		h = NULL;
 	}
 	KeepSettingCommonClose();
 	UNUSED(h);
@@ -894,11 +873,8 @@ sane_get_parameters (SANE_Handle h, SANE_Parameters * p)//voir avec CIJSC_get_pa
 {
 
 	canon_sane_t* handled = h;
-	CANON_SCANDATA *scandata = NULL;
-	scandata = (CANON_SCANDATA *)malloc(sizeof(CANON_SCANDATA));
 	SANE_Parameters ps;
 
-	int errCode = 0;
 	ps.depth = 8;//8
 	ps.last_frame = SANE_TRUE;
 	ps.format = SANE_FRAME_RGB;
