@@ -28,8 +28,6 @@
 
 #include <limits.h>
 
-#include <gtk/gtk.h>
-
 /*
 #define	_SGMP_DEBUG
 #define	_SGMP_DEBUG_VERBOSE_
@@ -60,6 +58,8 @@
  	Public types.
 */
 
+#ifndef SUPPORT_H_WO_GTK
+#include <gtk/gtk.h>
 typedef struct
 {
 	GtkBuilder	*builder;
@@ -145,6 +145,7 @@ typedef struct
 	/* error */
 	int			last_error_quit;
 }SGMP_Data;
+#endif /*SUPPORT_H_WO_GTK*/
 
 typedef struct
 {

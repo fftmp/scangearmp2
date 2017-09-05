@@ -27,6 +27,7 @@
 #include "../errors.h"
 
 #include "error_quit.h"
+#include "../support.h"
 
 
 int get_last_error_quit()
