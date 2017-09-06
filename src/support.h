@@ -38,8 +38,9 @@
 */
 #ifndef DBGMSG
 #ifdef _SGMP_DEBUG
+#include <stdio.h>
 /* debug message */
-	#define DBGMSG(...) ( fprintf( stderr, "[%s] ", __func__ ), fprintf( stderr, ""__VA_ARGS__ ) )
+	#define DBGMSG(format, ...) fprintf( stderr, "[%s] " format, __func__, ##__VA_ARGS__ )
 #else
 /* do nothing. */
 	#define DBGMSG( x, ... )
