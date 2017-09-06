@@ -1,1 +1,4 @@
 CMakeLists.txt.user
+pkg/
+build/
+*.pkg.tar.xz
