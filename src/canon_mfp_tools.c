@@ -30,6 +30,7 @@
 #include <libusb.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <libgen.h>
 
 #include "support.h"
 #include "errors.h"
@@ -113,8 +114,11 @@ FILE *cmt_conf_file_open(const char *conf)
 	
 	if ( !conf ) return NULL;
 	
+	char bin_path[PATH_MAX];
+	ssize_t bin_path_len = readlink("/proc/self/exe", bin_path, PATH_MAX);
+	bin_path[bin_path_len] = '\0';
 	memset( dst, 0, sizeof(dst) );
-	snprintf( dst, sizeof(dst), "%s/%s", path, conf );
+	snprintf( dst, sizeof(dst), "%s/%s/%s", dirname(bin_path), path, conf );
 	DBGMSG( " conf file \"%s\".\n", dst );
 	fp = fopen( dst, "r" );
 	if (fp) {

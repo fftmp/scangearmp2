@@ -74,11 +74,18 @@ int main(int argc, char **argv )
 	char 			*home_dir = NULL;
 	char			strbuf[PATH_MAX];
 	CANON_Device const	*selected = NULL;
-	
+
+	char bin_path[PATH_MAX];
+	ssize_t bin_path_len = readlink("/proc/self/exe", bin_path, PATH_MAX);
+	bin_path[bin_path_len] = '\0';
+	char *bin_dir_path = dirname(bin_path);
+	char pkg_locale_dir[PATH_MAX];
+	snprintf(pkg_locale_dir, PATH_MAX, "%s/../share/locale", bin_dir_path);
 #ifdef ENABLE_NLS
-	bindtextdomain( GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR );
-	bind_textdomain_codeset( GETTEXT_PACKAGE, "UTF-8" );
-	textdomain( GETTEXT_PACKAGE );
+        setlocale(LC_ALL, "");
+        bindtextdomain( "scangearmp2", pkg_locale_dir );
+        bind_textdomain_codeset( "scangearmp2", "UTF-8" );
+        textdomain( "scangearmp2" );
 #endif
 	
 	gtk_set_locale();
@@ -88,7 +95,9 @@ int main(int argc, char **argv )
 	data = g_slice_new( SGMP_Data );
 	data->builder = gtk_builder_new();
 	
-	if( ! gtk_builder_add_from_file( data->builder, PACKAGE_DATA_DIR G_DIR_SEPARATOR_S "scangearmp2.glade", &error ) )
+	char glade_path[PATH_MAX];
+	snprintf(glade_path, PATH_MAX, "%s/%s/scangearmp2.glade", bin_dir_path, PACKAGE_DATA_DIR);
+	if( ! gtk_builder_add_from_file( data->builder, glade_path, &error ) )
 	{
 		g_warning( "%s", error->message );
 		g_slice_free(SGMP_Data, data);
