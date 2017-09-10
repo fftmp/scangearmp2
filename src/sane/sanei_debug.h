@@ -65,29 +65,6 @@
 
 /* @} */
 
-/** @name Internal macros and functions
- * Do not use in your own code.
- * @{
- */
-
-/** @def DBG_LOCAL
- * Do not use in backends directly.
- *
- * Internal wrapper for printing function.
- */
-
-/** @fn extern void sanei_init_debug (const char * backend, int * debug_level_var);
- * Do not use in backends directly.
- *
- * Actual init function.
- */
-
-/** @fn extern void sanei_debug_msg (int level, int max_level, const char *be, const char *fmt, va_list ap);
- * Do not use in backends directly.
- *
- * Actual printing function.
- */
-/* @} */
 
                                   /** @hideinitializer*/
 #define ENTRY(name)     PASTE(PASTE(PASTE(sane_,BACKEND_NAME),_),name)

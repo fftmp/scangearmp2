@@ -49,7 +49,7 @@
 
 /** @mainpage SANEI (SANE internal routines) documentation
  *
- * @image html ../images/sane-logo2.jpg
+ * @image html sane-logo2.jpg
  * @section intro Introduction
  *
  * The header files in the include/sane/ directory named sanei_*.h provide
@@ -59,18 +59,19 @@
  * Please use the SANEI functions wherever possible.
  *
  * This documentation was created by the use of doxygen, the
- * doc/doxygen-sanei.conf configuration file and dcoumentation in the sanei_*.h
+ * doc/doxygen-sanei.conf configuration file and documentation in the sanei_*.h
  * files.
  *
- * This documenation is far from complete. Any help is appreciated.
+ * This documentation is far from complete. Any help is appreciated.
  *
  * @section additional Additional documentation
  * - The SANE standard can be found at <a
- *   href="http://www.sane-project.org/html/">the SANE webserver</a>.
+ *   href="http://www.sane-project.org/html/">the SANE webserver</a>,
+ *   though the PostScript version produced from the source may be more recent.
  * - Information on how to write a backend: <a
  *   href="../backend-writing.txt">backend-writing.txt</a>.
  * - General SANE documentation is on <a
- *   href="http://www.sane-project.org/docs.html>the SANE documentation
+ *   href="http://www.sane-project.org/docs.html">the SANE documentation
  *   page</a>.
  *
  * @section contact Contact
@@ -90,6 +91,9 @@
 
 /** @name Public macros and functions
  * @{
+ */
+/** @def __sane_unused__
+ * Mark parameters as potentially unused.
  */
 /** @def STRINGIFY(x)
  * Turn parameter into string.
@@ -135,18 +139,15 @@
 
 /* @} */
 
-/** @name Private macros
- * @{
- */
-/** @def STRINGIFY1(x)
- * Internal use only.
- */
-/** @def PASTE1(x,y)
- * Internal use only.
- */
-/* @} */
-
 /* A few convenience macros:  */
+
+/** @hideinitializer */
+#ifdef __GNUC__
+#define __sane_unused__ __attribute__((unused))
+#else
+#define __sane_unused__
+#endif
+
 /** @hideinitializer */
 #define NELEMS(a)	((int)(sizeof (a) / sizeof (a[0])))
 
