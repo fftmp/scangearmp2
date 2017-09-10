@@ -3,15 +3,25 @@
  *******************************************************************/
 
 #define _GNU_SOURCE
-#include "canon_pixma.h"
-#include <sane/sane.h>
-#include <sane/saneopts.h>
-#include "sanei.h"
-#include "sanei_backend.h"
-#include <jpeglib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
 #include <setjmp.h>
 #include <unistd.h>
+#include <sane/sane.h>
+#include <sane/saneopts.h>
+#include "../errors.h"
+#include "../cnmsfunc.h"
+#include "../support.h"
+#include <jpeglib.h> // must be after support.h because of redefining 'GLOBAL' macro
+#include "../canon_mfp_tools.h"
+#include "../keep_setting.h"
+#include "../file_control.h"
+#include "canon_pixma.h"
 #include "error_quit.h"
+#define NDEBUG
+#include "sanei_backend.h"
 
 #ifdef __GNUC__
 # define UNUSED(v) (void) v
