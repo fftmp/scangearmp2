@@ -34,7 +34,7 @@
 
 #include "support.h"
 
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 #include "errors.h"
 #include "cnmsfunc.h"
 #include "file_control.h"

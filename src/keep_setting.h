@@ -26,7 +26,7 @@
 #ifndef	_KEEP_SETTING_H_
 #define	_KEEP_SETTING_H_
 
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 
 #define	KEEPSETTING_MAC_ADDRESS_USB	("00-00-00-00-00-00\0")
 

@@ -27,7 +27,7 @@
 #define	_FILE_CONTROL_H_
 
 #include <sys/types.h>
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 
 enum{
 	FILECONTROL_STATUS_NOT_EXIST = 0,

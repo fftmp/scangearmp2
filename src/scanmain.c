@@ -33,7 +33,7 @@
 
 #include "errors.h"
 
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 #include "canon_mfp_tools.h"
 #include "errordlg.h"
 #include "cnmsfunc.h"

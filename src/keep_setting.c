@@ -28,7 +28,7 @@
 
 #include "support.h"
 
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 #include "cnmsfunc.h"
 #include "file_control.h"
 #include "keep_setting.h"

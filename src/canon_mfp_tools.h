@@ -29,11 +29,11 @@
 
 #include <inttypes.h>
 
-#include "libcnnet.h"
-#include "libcnnet2.h"
-#include "libcnnet3.h"
-#include "libcnnet3_url.h"
-#include "cnmslld.h"
+#include "../usr/include/libcnnet.h"
+#include "../usr/include/libcnnet2.h"
+#include "../usr/include/libcnnet3.h"
+#include "../usr/include/libcnnet3_url.h"
+#include "../usr/include/cnmslld.h"
 
 #define DEFTOSTR1(def) #def
 #define DEFTOSTR(def) DEFTOSTR1(def)

@@ -28,7 +28,7 @@
 #define	_ERRORS_H_
 
 #include <errno.h>
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 
 #ifdef	_GLOBALS_
 	#define	GLOBAL

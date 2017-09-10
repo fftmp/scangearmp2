@@ -27,7 +27,7 @@
 #define	_CNMSFUNC_H_
 
 #include <limits.h>
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 
 #define	CNMS_SCALE_100_PERCENT	(10000)
 

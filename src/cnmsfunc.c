@@ -30,7 +30,7 @@
 
 #include "support.h"
 
-#include "cnmstype.h"
+#include "../usr/include/cnmstype.h"
 
 #include "cnmsfunc.h"
 
