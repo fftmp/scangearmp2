@@ -23,9 +23,9 @@
  *    If you do not wish that, delete this exception.
 */
 
-#include "support.h"
-#include "cnmsstrings.h"
-#include "errors.h"
+#include "../support.h"
+#include "../cnmsstrings.h"
+#include "../errors.h"
 
 #include "error_quit.h"
 
