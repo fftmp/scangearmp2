@@ -748,10 +748,10 @@ sane_control_option (SANE_Handle h, SANE_Int n,
 				     int v1 = (int)*(SANE_Word*)v;
 				     handled->val[n].w = *(SANE_Word *) v;
 				     if(v1 > 100){
-					     handled->sgmp.scan_source = CIJSC_SOURCE_DOCUMENT;
+					     handled->sgmp.scan_source = CIJSC_SOURCE_PHOTO;
 				     }
 				     else{
-					     handled->sgmp.scan_source = CIJSC_SOURCE_PHOTO;
+					     handled->sgmp.scan_source = CIJSC_SOURCE_DOCUMENT;
 				     }
 				     if(i){
 					     *i |= SANE_INFO_RELOAD_PARAMS | SANE_INFO_RELOAD_OPTIONS | SANE_INFO_INEXACT;
