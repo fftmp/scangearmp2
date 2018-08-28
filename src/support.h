@@ -243,11 +243,4 @@ enum{
 	CIJSC_FORMAT_PDF,
 };
 
-/* error dialog type */
-enum{
-	CIJSC_ERROR_DLG_QUIT_FALSE = 0,
-	CIJSC_ERROR_DLG_QUIT_TRUE,
-};
-
-
 #endif	/*_SUPPORT_H_*/

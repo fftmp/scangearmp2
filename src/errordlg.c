@@ -63,28 +63,12 @@ int CIJSC_UI_error_show( SGMP_Data *data, GtkWidget *parent )
 			}
 		}
 		
-		/* get error id. */
-		for( index_id = 0; index_id < sizeof( error_index_table ) / sizeof( CIJSC_ERROR_INDEX_TABLE ) ; index_id++ ) {
-			if ( error_index_table[index_id].code == errorCode ) {
-				break;
-			}
-		}
-		DBGMSG("index_id = %d\n", index_id );
-		if ( index_id == ( sizeof( error_index_table ) / sizeof( CIJSC_ERROR_INDEX_TABLE ) ) ) {
+		CIJSC_ERROR_MSG_TABLE const * error_info = get_error_info_by_code(errorCode);
+		if ( error_info->id < 0 ) {
 			goto _EXIT;
 		}
-		/* get error message. */
-		for( index_mes = 0; error_msg_table[index_mes].id >= 0 ; index_mes++ ) {
-			if ( error_msg_table[index_mes].id == error_index_table[index_id].id ) {
-				break;
-			}
-		}
-		DBGMSG("index_mes = %d\n", index_mes );
-		if ( error_msg_table[index_mes].id < 0 ) {
-			goto _EXIT;
-		}
-		gtk_label_set_label( GTK_LABEL ( data->label_error_msg ), gettext( error_msg_table[index_mes].msg ) );
-		switch ( error_msg_table[index_mes].type ){
+		gtk_label_set_label( GTK_LABEL ( data->label_error_msg ), gettext( error_info->msg ) );
+		switch ( error_info->type ){
 			case CIJSC_ERROR_DLG_TYPE_OK :
 				gtk_widget_hide( data->button_error_cancel );
 				gtk_widget_show( data->button_error_ok );
@@ -93,7 +77,7 @@ int CIJSC_UI_error_show( SGMP_Data *data, GtkWidget *parent )
 			case CIJSC_ERROR_DLG_TYPE_OK_CANCEL :
 				gtk_widget_show( data->button_error_cancel );
 				gtk_widget_show( data->button_error_ok );
-				if( error_msg_table[index_mes].id == CIJSC_ERROR_SAVE_OVERWRITE ) {
+				if( error_info->id == CIJSC_ERROR_SAVE_OVERWRITE ) {
 					gtk_widget_grab_focus( data->button_error_cancel );
 				}
 				else {
@@ -103,7 +87,7 @@ int CIJSC_UI_error_show( SGMP_Data *data, GtkWidget *parent )
 			default:
 				break;
 		}
-		ret = error_msg_table[index_mes].quit;
+		ret = error_info->quit;
 		data->last_error_quit = ret;
 		gtk_widget_show( data->dialog_error );
 		gtk_main();

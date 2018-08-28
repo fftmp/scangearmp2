@@ -23,7 +23,6 @@
  *    If you do not wish that, delete this exception.
 */
 
-#include "../support.h"
 #include "../cnmsstrings.h"
 #include "../errors.h"
 
@@ -32,7 +31,6 @@
 
 int get_last_error_quit()
 {
-	int		index_id, index_mes;
 	int		ret = -1;
 	int		errorCode = 0;
 
@@ -55,28 +53,11 @@ int get_last_error_quit()
 
 	/* error occurred. */
 	if ( errorCode ) {
-	/* get error id. */
-		for( index_id = 0; (unsigned long)index_id < sizeof( error_index_table ) / sizeof( CIJSC_ERROR_INDEX_TABLE ) ; index_id++ ) {
-			if ( error_index_table[index_id].code == errorCode ) {
-				break;
-			}
-		}
-		DBGMSG("index_id = %d\n", index_id );
-		if ( index_id == ( sizeof( error_index_table ) / sizeof( CIJSC_ERROR_INDEX_TABLE ) ) ) {
-			goto _EXIT;
-		}
-		/* get error message. */
-		for( index_mes = 0; error_msg_table[index_mes].id >= 0 ; index_mes++ ) {
-			if ( error_msg_table[index_mes].id == error_index_table[index_id].id ) {
-				break;
-			}
-		}
-		DBGMSG("index_mes = %d\n", index_mes );
-		if ( error_msg_table[index_mes].id < 0 ) {
-			goto _EXIT;
-		}
-
-		ret = error_msg_table[index_mes].quit;
+	    CIJSC_ERROR_MSG_TABLE const * error_info = get_error_info_by_code(errorCode);
+	    if ( error_info->id < 0 ) {
+		    goto _EXIT;
+	    }
+	    ret = error_info->quit;
 
 	}
 _EXIT:

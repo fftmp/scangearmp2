@@ -40,6 +40,7 @@
 #include "mainui.h"
 #include "selectdevice.h"
 #include "keep_setting.h"
+#include "errordlg.h"
 
 #define WAIT_SECOND				{usleep(1000000);}
 
