@@ -69,8 +69,12 @@ CNMSInt32 CnmsStrCopy(
 		DBGMSG( "[CnmsStrCopy]src string(%d) is too long(>%d).\n", srcLen, dstLen );
 		goto	EXIT;
 	}
-	
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
 	strncpy( (CNMSInt8 *)lpDst, (CNMSInt8 *)lpSrc, srcLen );
+#pragma GCC diagnostic pop
+
 	lpDst[ srcLen ] = '\0';
 
 	ret = srcLen;
@@ -98,8 +102,12 @@ CNMSInt32 CnmsStrCat(
 		DBGMSG( "[CnmsStrCat]total string(%d) is too long(>%d).\n", totalLen, dstLen );
 		goto	EXIT;
 	}
-	
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wstringop-truncation"
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
 	strncat( (CNMSInt8 *)lpDst, (CNMSInt8 *)lpSrc, srcLen );
+#pragma GCC diagnostic pop
 	lpDst[ totalLen ] = '\0';
 
 	ret = totalLen;

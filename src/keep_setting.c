@@ -230,7 +230,10 @@ static CNMSInt32 SubWriteSettingCommonFile( CNMSFd fd )
 		goto	EXIT;
 	}
 	for( i = 0 ; i < KEEPSETTING_COMMON_ID_MAX ; i ++ ){
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-truncation"
 		snprintf( lpBuf, KEEP_SETTING_RASTER_LEN, "%s%s\n", KeepSettingCommonStrArray[ i ], lpCommonSetting->str[ i ] );
+#pragma GCC diagnostic pop
 		if( ( ldata = FileControlWriteFile( fd, lpBuf, CnmsStrLen( lpBuf ) ) ) != CNMS_NO_ERR ){
 			goto	EXIT;
 		}
