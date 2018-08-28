@@ -560,7 +560,7 @@ init_options (canon_sane_t * s)
 	s->opt[OPT_MODE].constraint_type = SANE_CONSTRAINT_STRING_LIST;
 	s->opt[OPT_MODE].constraint.string_list = mode_list;
 	s->val[OPT_MODE].s = strdup (mode_list[0]);
-    s->opt[OPT_MODE].size = max_string_size(mode_list);
+  s->opt[OPT_MODE].size = max_string_size(mode_list);
 	//s->sgmp.scan_color = s->val[OPT_MODE].s == SANE_VALUE_SCAN_MODE_COLOR ? CIJSC_COLOR_COLOR : CIJSC_COLOR_GRAY;
 
 	s->opt[OPT_RESOLUTION].name = SANE_NAME_SCAN_RESOLUTION;
@@ -717,15 +717,15 @@ sane_control_option (SANE_Handle h, SANE_Int n,
 			case OPT_BR_X:
 			case OPT_BR_Y:
 			case OPT_PREVIEW:
-				*(SANE_Word *) v = handled->val[n].w;
-			break;
-            case OPT_MODE:
-                strcpy (v, handled->val[n].s);
-              break;
-            case OPT_MODE_GROUP:
-                DBGMSG("unexpected get option, ignore");
+			  *(SANE_Word *) v = handled->val[n].w;
+			  break;
+			case OPT_MODE:
+			  strcpy (v, handled->val[n].s);
+			  break;
+			case OPT_MODE_GROUP:
+			  DBGMSG("unexpected get option, ignore");
 			default:
-                break;
+			  break;
 		}
 		return SANE_STATUS_GOOD;
 	}
@@ -738,11 +738,11 @@ sane_control_option (SANE_Handle h, SANE_Int n,
 				case OPT_BR_X:
 				case OPT_BR_Y:
 				case OPT_PREVIEW:
-				handled->val[n].w = *(SANE_Word *) v;
-				if(i && handled->val[n].w != *(SANE_Word *) v){
-				*i |= SANE_INFO_RELOAD_PARAMS | SANE_INFO_RELOAD_OPTIONS | SANE_INFO_INEXACT;
-				}
-                handled->val[n].w = *(SANE_Word *) v;
+				  handled->val[n].w = *(SANE_Word *) v;
+				  if(i && handled->val[n].w != *(SANE_Word *) v){
+				    *i |= SANE_INFO_RELOAD_PARAMS | SANE_INFO_RELOAD_OPTIONS | SANE_INFO_INEXACT;
+				  }
+				  handled->val[n].w = *(SANE_Word *) v;
 				break;
 				case OPT_RESOLUTION: {
 				     int v1 = (int)*(SANE_Word*)v;
@@ -869,9 +869,9 @@ sane_get_parameters (SANE_Handle h, SANE_Parameters * p)//voir avec CIJSC_get_pa
 	ps.depth = 8;//8
 	ps.last_frame = SANE_TRUE;
 	ps.format = SANE_FRAME_RGB;
-    ps.pixels_per_line = handled->sgmp.scan_w;
-    ps.lines = handled->sgmp.scan_h;
-    ps.bytes_per_line = ps.pixels_per_line*3;
+	ps.pixels_per_line = handled->sgmp.scan_w;
+	ps.lines = handled->sgmp.scan_h;
+	ps.bytes_per_line = ps.pixels_per_line*3;
 	*p = ps;
 
 	return SANE_STATUS_GOOD;
