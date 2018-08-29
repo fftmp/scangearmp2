@@ -545,13 +545,6 @@ init_options (canon_sane_t * s)
 	s->opt[OPT_NUM_OPTS].cap = SANE_CAP_SOFT_DETECT;
 	s->val[OPT_NUM_OPTS].w = NUM_OPTIONS;
 
-	/* "Mode" group: */
-	s->opt[OPT_MODE_GROUP].title = "Scan Mode";
-	s->opt[OPT_MODE_GROUP].desc = "";
-	s->opt[OPT_MODE_GROUP].type = SANE_TYPE_GROUP;
-	s->opt[OPT_MODE_GROUP].cap = 0;
-	s->opt[OPT_MODE_GROUP].constraint_type = SANE_CONSTRAINT_NONE;
-
 	s->opt[OPT_MODE].name = SANE_NAME_SCAN_MODE;
 	s->opt[OPT_MODE].title = SANE_TITLE_SCAN_MODE;
 	s->opt[OPT_MODE].desc = SANE_DESC_SCAN_MODE;
@@ -722,8 +715,6 @@ sane_control_option (SANE_Handle h, SANE_Int n,
 			case OPT_MODE:
 			  strcpy (v, handled->val[n].s);
 			  break;
-			case OPT_MODE_GROUP:
-			  DBGMSG("unexpected get option, ignore");
 			default:
 			  break;
 		}

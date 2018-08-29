@@ -8,7 +8,6 @@
 enum canon_sane_Option
 {
 	OPT_NUM_OPTS = 0,
-	OPT_MODE_GROUP,
 	OPT_MODE,
 	OPT_RESOLUTION,
 	OPT_PREVIEW,
