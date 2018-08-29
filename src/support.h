@@ -149,7 +149,6 @@ typedef struct
 	/* scan parameters */
 	int			scan_scanmode;
 	int			scan_source;
-	int			scan_color;
 	int			scan_size;
 
 	int			scan_format;

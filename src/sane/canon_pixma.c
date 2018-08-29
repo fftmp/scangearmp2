@@ -484,7 +484,6 @@ static CMT_Status init_canon_options(canon_sane_t * handled){
 
 	data->scan_scanmode = CIJSC_SCANMODE_PLATEN;
 	data->scan_source = CIJSC_SOURCE_PHOTO;//DOCUMENT;
-	data->scan_color = CIJSC_COLOR_COLOR;
 	data->scan_format = CIJSC_FORMAT_JPEG;
 	data->scan_size = CIJSC_SIZE_A4;
 	data->scan_result = CIJSC_SCANMAIN_SCAN_FINISHED;
@@ -750,21 +749,20 @@ sane_control_option (SANE_Handle h, SANE_Int n,
 			     }
 				break;
 				case OPT_MODE:
-				handled->val[n].s = v;//(SANE_Word *)strdup((char *)v);
-				if(!strncasecmp(v,SANE_VALUE_SCAN_MODE_GRAY,3)){
-						handled->sgmp.scan_color = CIJSC_COLOR_GRAY;
-				}
-				else{
-					handled->sgmp.scan_color = CIJSC_COLOR_COLOR;
-				}
-				
-				if(i){
-				*i |= SANE_INFO_RELOAD_PARAMS | SANE_INFO_RELOAD_OPTIONS | SANE_INFO_INEXACT;
-				}
-
-				break;
-				default:break;
-				}
+				  if(strncasecmp(v, SANE_VALUE_SCAN_MODE_GRAY, 3) == 0) {
+				    handled->val[n].s = SANE_VALUE_SCAN_MODE_GRAY;
+				  } else if (strncasecmp(v, SANE_VALUE_SCAN_MODE_COLOR, 3) == 0) {
+				    handled->val[n].s = SANE_VALUE_SCAN_MODE_COLOR;
+				  } else {
+				    return SANE_STATUS_UNSUPPORTED;
+				  }
+				  if(i) {
+				    *i |= SANE_INFO_RELOAD_PARAMS | SANE_INFO_RELOAD_OPTIONS | SANE_INFO_INEXACT;
+				  }
+				  break;
+				default:
+				  break;
+			  }
 	}
 
 	return SANE_STATUS_GOOD;
@@ -788,7 +786,7 @@ sane_start (SANE_Handle h){
 	param.Top			= 0;
 	param.Right			= handled->sgmp.scan_w;
 	param.Bottom		= handled->sgmp.scan_h;
-	param.ScanMode		= ( handled->sgmp.scan_color == CIJSC_COLOR_COLOR ) ? 4 : 2;
+	param.ScanMode		= strncasecmp(handled->val[OPT_MODE].s, SANE_VALUE_SCAN_MODE_COLOR, 3) == 0 ? 4 : 2;
 	param.ScanMethod	= ( handled->sgmp.scan_scanmode == CIJSC_SCANMODE_ADF_D_S ) ? CIJSC_SCANMODE_ADF_D_L : handled->sgmp.scan_scanmode;
 	param.opts.p1_0		= 0;
 	param.opts.p2_0		= 0;
