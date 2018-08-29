@@ -572,13 +572,6 @@ init_options (canon_sane_t * s)
 	s->opt[OPT_PREVIEW].type = SANE_TYPE_BOOL;
 	s->val[OPT_PREVIEW].w = SANE_FALSE;
 
-	/* "Geometry" group: */
-	s->opt[OPT_GEOMETRY_GROUP].title = "Geometry";
-	s->opt[OPT_GEOMETRY_GROUP].desc = "";
-	s->opt[OPT_GEOMETRY_GROUP].type = SANE_TYPE_GROUP;
-	s->opt[OPT_GEOMETRY_GROUP].cap = SANE_CAP_ADVANCED;
-	s->opt[OPT_GEOMETRY_GROUP].constraint_type = SANE_CONSTRAINT_NONE;
-
 	/* top-left x */
 	s->opt[OPT_TL_X].name = SANE_NAME_SCAN_TL_X;
 	s->opt[OPT_TL_X].title = SANE_TITLE_SCAN_TL_X;

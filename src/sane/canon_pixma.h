@@ -11,8 +11,6 @@ enum canon_sane_Option
 	OPT_MODE,
 	OPT_RESOLUTION,
 	OPT_PREVIEW,
-
-	OPT_GEOMETRY_GROUP,
 	OPT_TL_X,
 	OPT_TL_Y,
 	OPT_BR_X,
